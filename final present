@@ -1,0 +1,127 @@
+
+"Microsoft Studios:"
+How should Microsoft Enter the Movie Business?
+G. Haws & K. Hayes
+July 31, 2019
+Sources:\ TheMovieDB.org\ Box Office Mojo\ IMBD
+
+Questions to Consider:
+- In order to maximize its ROI, what types of films should Microsoft produce?
+- What types of studios should Microsoft emulate?
+- Which directors should Microsoft seek?
+To address these questions, we will perform expoloratory data analysis to map the features of the dataset. We hope this exercise will reveal possible areas for further research.
+
+
+Step One: Import the Tools...
+In [1]:
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from Microsoft_Clean import *
+from Microsoft_Dataviz import *
+-----
+Step Two: Import the Data.
+-------
+tn_budget = pd.read_csv('Data/Zipped_Data/tn.movie_budgets.csv.gz',\
+                        compression='gzip')
+bom_gross = pd.read_csv('Data/Zipped_Data/bom.movie_gross.csv.gz',\
+                        compression='gzip')
+imbd_basics = pd.read_csv('Data/Zipped_Data/imdb.title.basics.csv.gz',\
+                          compression='gzip')
+imbd_name = pd.read_csv('Data/Zipped_Data/imdb.name.basics.csv.gz',\
+                        compression='gzip')
+imbd_principals = pd.read_csv('Data/Zipped_Data/imdb.title.principals.csv.gz',\
+                              compression='gzip')
+------------------                              --
+#Step Three: Clean the Data...
+----------
+* N.B. - the below is an abstraction; the actual cleaing process is rather lengthy...
+...this code takes in a list of dataframes and condenses them into one:
+---------------
+```
+md_clean = Clean_Data(tn_budget, bom_gross, imbd_basics, imbd_name, imbd_principals)
+```
+Data cleaning can be labor-intensive. Methods of cleaning our data included finding a way to first strip out any extraneous bits of irregular punctuation from the 'title' column so that we could then pass a method of eliminating duplicates. With the movie titles harmonized and duplicates removed, we could then use this column as a key to perform operations on other elements.
+------
+Step Four: Data Visualizations (i.e. exploratory data analysis)..
+------------
+Now that we have some clean data to work with, let's dig in! We see below the outline of the code necessary to create a stacked bar chart comparing cost and revenue figures for movies made after 2010:
+-----------
+# Take top net profit values:
+top_net = take_top_values_descending(md_clean, 'net', 10)
+
+# Prepare our data series:
+index = cast_to_list(top_net, 'title')
+production_budget = cast_to_list(top_net, 'production_budget')
+worldwide_gross = cast_to_list(top_net, 'worldwide_gross')
+
+# Plot our bar chart:
+df = pd.DataFrame({'Production Budget USD (Billion)':
+                   production_budget,
+                   'Worldwide Gross USD (Billion)':
+                   worldwide_gross}, index=index)
+ax = df.plot.barh(figsize=(20, 15), rot=0, fontsize=20).invert_yaxis()
+---------------
+
+
+Unsurprisingly, it looks like films with budgets in the low nine-figures also had the highest gross profit margins.
+
+What if we just looked at raw profitability? The following chart is like the one above in that the horizontal columns represent budgets and boxoffice receipts, although it is ranked (from top to bottom) ordinally by xROI multiple:
+---------
+```
+Take top net profit values:
+top_ratio = take_top_values_descending(md_clean, 'ratio', 10)
+
+# Prepare our data series:
+index = cast_to_list(top_ratio, 'title')
+production_budget = cast_to_list(top_ratio, 'production_budget')
+worldwide_gross = cast_to_list(top_ratio, 'worldwide_gross')
+
+# ... and plot our bar chart:
+df = pd.DataFrame({'Production Budget USD ($100 M)':
+                   production_budget,
+                   'Worldwide Gross USD ($100 M)':
+                   worldwide_gross}, index=index,)
+ax = df.plot.barh(figsize=(20, 15), rot=0, fontsize=20).invert_yaxis()```
+-------------
+
+So, in terms of relative profitability, we are looking at an entirely different top 10, which includes a lot of low-budget horror movies and other films with a strong niche appeal to a very specific segment. Investing in a whole portfolio of films like this would seem to be a better alternative than investing a lump sum in a single blockbuster!
+-------
+``` Creates a graph of the 20 studios with the best ROI
+studio_ratio_mean = take_top_mean_descending(md_clean, 'studio', 'ratio', 0, 20)```
+Here, we again note that, although big names like Warner Bros., Paramount, and Universal factor highly among the top 20 most profitable studios, there are a good number of lesser-known production companies here too, such as Orchard studios (now owned by Sony), UTV studios (India), and Bloomhouse Studios (BH Tilt).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
