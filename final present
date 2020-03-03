@@ -1,4 +1,29 @@
-
+# goal
+------
+* The primary goal is to find out what kinds of movies make the most revenue.
+ * We will achieve this goal by comparing 4 variables against global revenue, to see if there are any strong correlations.
+ * These 4 variables are: budget, votes, release month, and genre.
+ * We will provide 4 recommendations on how to make more money on a movie, based on the findings from the data.
+ -------
+ #Way of approchig
+ --------
+ * Get a feel for all provided datasets.
+ * Selected 3 interesting datasets to analyze. ("tn.movie_budgets.csv.gz" + "tmdb.movies.csv.gz" + "imdb.title.basics.csv.gz")
+ * Determine which variables within the selected datasets can be used to determine the "success" of a film.
+ * Perform data cleaning on the two selected datasets.
+ * Merge all selected datasets into one.
+ * Analyze the merged dataset to extract 4 actionable insights, regarding: budget vs. global revenue, rating vs. global revenue, release date vs. global revenue, genre vs. global revenue.
+ * Generate 2 summary tables using Pandas.
+ * Export visualizations to tell the "success stories" of the films included in the dataset.
+ * Create a presentation to translate the analysis into insights to decide what films should be created.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 "Microsoft Studios:"
 How should Microsoft Enter the Movie Business?
 G. Haws & K. Hayes
@@ -9,7 +34,8 @@ Questions to Consider:
 - In order to maximize its ROI, what types of films should Microsoft produce?
 - What types of studios should Microsoft emulate?
 - Which directors should Microsoft seek?
-To address these questions, we will perform expoloratory data analysis to map the features of the dataset. We hope this exercise will reveal possible areas for further research.
+To address these questions, we will perform expoloratory data analysis to map the features of the dataset.
+We hope this exercise will reveal possible areas for further research.
 
 
 Step One: Import the Tools...
@@ -41,7 +67,8 @@ imbd_principals = pd.read_csv('Data/Zipped_Data/imdb.title.principals.csv.gz',\
 ```
 md_clean = Clean_Data(tn_budget, bom_gross, imbd_basics, imbd_name, imbd_principals)
 ```
-Data cleaning can be labor-intensive. Methods of cleaning our data included finding a way to first strip out any extraneous bits of irregular punctuation from the 'title' column so that we could then pass a method of eliminating duplicates. With the movie titles harmonized and duplicates removed, we could then use this column as a key to perform operations on other elements.
+Data cleaning can be labor-intensive.
+Methods of cleaning our data included finding a way to first strip out any extraneous bits of irregular punctuation from the 'title' column so that we could then pass a method of eliminating duplicates. With the movie titles harmonized and duplicates removed, we could then use this column as a key to perform operations on other elements.
 ------
 Step Four: Data Visualizations (i.e. exploratory data analysis)..
 ------------
