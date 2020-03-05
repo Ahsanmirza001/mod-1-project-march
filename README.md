@@ -15,5 +15,8 @@ Goals.
 -------
 Summary of Files in Repository
 
-*
+* clean data
+* final codes
+* final presentation
+* README.md
 
