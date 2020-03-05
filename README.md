@@ -19,4 +19,6 @@ Summary of Files in Repository
 * final codes
 * final presentation
 * README.md
+----------
+1. Does the budget have a direct correlation with the revenue produce. Our normal understanding would be that the higher the investment, the greater the revenue that shall be generated. We shall use the data to either support or disprove this statement.
 
