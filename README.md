@@ -11,5 +11,6 @@ Goals.
 * To develop our E.Q.'s as well as our I.Q.'s
 * To perform a cursory exploration of the data to determine areas for further analysis
 * To communicate our findings to Satya Nadella in a clear, concise manner
-
+-------
+Summary of Files in Repository
 
