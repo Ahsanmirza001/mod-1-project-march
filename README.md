@@ -1,4 +1,7 @@
-Investigating and analysis what kinds of movies Microsoft needs to make.
+#what kinds of movies Microsoft needs to make??
+lets investegate.
+-------
+
 
 Project Maneger.
 -----
